@@ -10,6 +10,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ACCESS_LEVEL_MASTER_ADMIN = 'master_admin';
+    const ACCESS_LEVEL_EMPLOYEE = 'employee';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,4 +39,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isMasterAdmin()
+    {
+        return in_array($this->access_level, [self::ACCESS_LEVEL_MASTER_ADMIN]);
+    }
+    public function isEmployee()
+    {
+        return in_array($this->access_level, [self::ACCESS_LEVEL_EMPLOYEE]);
+    }
 }
