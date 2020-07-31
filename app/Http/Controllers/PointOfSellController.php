@@ -147,7 +147,7 @@ class PointOfSellController extends Controller
         ])
         ->setPaper('a4');
 
-        return $pdf->download('order_invoice_'.$id.'.pdf');
+        return $pdf->downlaod('order_invoice_'.$id.'.pdf');
 
     }
 }

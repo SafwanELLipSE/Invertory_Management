@@ -238,7 +238,7 @@ class SalaryController extends Controller
       ])
       ->setPaper('a4');
 
-      return $pdf->download('bill_employee_'.$id.'.pdf');
+      return $pdf->stream('bill_employee_'.$id.'.pdf');
   }
   public function getUnpaidSalaryList(Request $request)
   {

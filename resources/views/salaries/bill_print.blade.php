@@ -2,15 +2,20 @@
 <html>
 
    <head>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>HTML to PDF</title>
    </head>
 
-   <!-- Bootstrap CSS
    ============================================ -->
    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
    <!-- Bootstrap CSS
    ============================================ -->
    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+   <!-- bootstrap JS
+   ============================================ -->
+   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
    <body>
      <div class="container">
@@ -30,7 +35,7 @@
                          <abbr title="Mobile">M:</abbr> {{ $getEmployee->user->mobile_no }}
                      </address>
                  </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                 <div class="col-xs-6 col-sm-6 col-md-6">
                      <p>
                          <em><b>Date:</b>  {{	date("l jS \of F Y") }}</em>
                      </p>
