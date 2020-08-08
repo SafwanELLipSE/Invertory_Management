@@ -2,111 +2,178 @@
 <html>
 
    <head>
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-     <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>HTML to PDF</title>
    </head>
 
-   ============================================ -->
-   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-   <!-- Bootstrap CSS
-   ============================================ -->
-   <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-   <!-- bootstrap JS
-   ============================================ -->
-   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+   <style media="screen">
+     .invoice-box {
+       max-width: 800px;
+       margin: auto;
+       padding: 30px;
+       border: 1px solid #eee;
+       box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+       font-size: 16px;
+       line-height: 24px;
+       font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+       color: #555;
+      }
 
+     .invoice-box table {
+         width: 100%;
+         line-height: inherit;
+         text-align: left;
+     }
+
+     .invoice-box table td {
+         padding: 5px;
+         vertical-align: top;
+     }
+
+     .invoice-box table tr td:nth-child(2) {
+         text-align: right;
+     }
+
+     .invoice-box table tr.top table td {
+         padding-bottom: 20px;
+     }
+
+     .invoice-box table tr.top table td.title {
+         font-size: 45px;
+         line-height: 45px;
+         color: #333;
+     }
+
+     .invoice-box table tr.information table td {
+         padding-bottom: 40px;
+     }
+
+     .invoice-box table tr.heading td {
+         background: #eee;
+         border-bottom: 1px solid #ddd;
+         font-weight: bold;
+     }
+
+     .invoice-box table tr.details td {
+         padding-bottom: 20px;
+     }
+
+     .invoice-box table tr.item td{
+         border-bottom: 1px solid #eee;
+     }
+
+     .invoice-box table tr.item.last td {
+         border-bottom: none;
+     }
+
+     .invoice-box table tr.total td:nth-child(2) {
+         border-top: 2px solid #eee;
+         font-weight: bold;
+     }
+
+     @media only screen and (max-width: 600px) {
+         .invoice-box table tr.top table td {
+             width: 100%;
+             display: block;
+             text-align: center;
+         }
+
+         .invoice-box table tr.information table td {
+             width: 100%;
+             display: block;
+             text-align: center;
+         }
+     }
+
+     /** RTL **/
+     .rtl {
+         direction: rtl;
+         font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+     }
+
+     .rtl table {
+         text-align: right;
+     }
+
+     .rtl table tr td:nth-child(2) {
+         text-align: left;
+     }
+
+   </style>
    <body>
-     <div class="container">
-     <div class="row">
-         <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
-             <div class="row">
-                 <div class="col-xs-6 col-sm-6 col-md-6">
-                     <address>
-                         <strong>{{ $getEmployee->user->name }}</strong>
-                         <br>
-                         {{ $getEmployee->address }}
-                         <br>
-                         {{ $getEmployee->nid_number }}
-                         <br>
-                         {{ $getEmployee->user->email }}
-                         <br>
-                         <abbr title="Mobile">M:</abbr> {{ $getEmployee->user->mobile_no }}
-                     </address>
-                 </div>
-                 <div class="col-xs-6 col-sm-6 col-md-6">
-                     <p>
-                         <em><b>Date:</b>  {{	date("l jS \of F Y") }}</em>
-                     </p>
-                     <p>
-                       <em>
-                         <b>Month: </b>{{ $getSalary->month }}
-                         </br>
-                         <b>Year: </b>{{ $getSalary->year }}
-                         </br>
-                         @if($getSalary->status == 0)
-                           <b>Status: </b><span class="text-danger">{!! App\Salary::getStatus($getSalary->status) !!}</span>
-                         @else
-                           <b>Status: </b><span class="text-success">{!! App\Salary::getStatus($getSalary->status) !!}</span>
-                         @endif
-                       </em>
-                     </p>
-                 </div>
-             </div>
-             <div class="row">
-                 <div class="text-center">
-                     <h1>Receipt</h1>
-                 </div>
-                 </span>
-                 <table class="table table-hover">
-                     <thead>
-                         <tr>
-                             <th>Index</th>
-                             <th></th>
-                             <th class="text-center"></th>
-                             <th class="text-center">Amount</th>
-                         </tr>
-                     </thead>
-                     <tbody>
-                         <tr>
-                             <td class="col-md-9"><em>Salary</em></h4></td>
-                             <td class="col-md-1" style="text-align: center"></td>
-                             <td class="col-md-1 text-center"></td>
-                             <td class="col-md-1 text-center">{{ $getEmployee->salary }}</td>
-                         </tr>
-                         <tr>
-                             <td class="col-md-9"><em>Advanced Payment</em></h4></td>
-                             <td class="col-md-1" style="text-align: center"></td>
-                             <td class="col-md-1 text-center"></td>
-                             <td class="col-md-1 text-center">{{ $getSalary->advanced_amount }}</td>
-                         </tr>
-                         <tr>
-                             <td class="col-md-9"><em>Personal Expanse</em></h4></td>
-                             <td class="col-md-1" style="text-align: center"></td>
-                             <td class="col-md-1 text-center"></td>
-                             <td class="col-md-1 text-center">{{ $getSalary->personal_expanse }}</td>
-                         </tr>
-                         <tr>
-                             <td></td>
-                             <td></td>
-                             <td class="text-right"><h4><strong>Total:</strong></h4></td>
-                             <td class="text-center text-danger"><h4><strong>{{ $getSalary->current_amount }}</strong></h4></td>
-                         </tr>
-                     </tbody>
-                 </table>
-                 @if($getSalary->status == 0)
-                   <form action="{{ route('salary.pay') }}" method="post">
-                     @csrf
-                     <input type="hidden" name="salary_id" value="{{$getSalary->id}}">
-                     <button type="submit" class="btn btn-success btn-lg btn-block">
-                         Pay Now   <span class="glyphicon glyphicon-chevron-right"></span>
-                     </button>
-                   </form>
-                 @endif
-             </div>
-         </div>
-     </div>
+
+      <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                {{ $getEmployee->user->name }}<br>
+                                {{ $getEmployee->nid_number }}<br>
+                                {{ $getEmployee->user->email }}<br>
+                                <b>M:</b> {{ $getEmployee->user->mobile_no }}
+                            </td>
+
+                            <td>
+                                <b>Date: </b>{{ $getSalary->created_at->format('d.m.Y') }}<br>
+                                <b>Month: </b>{{ $getSalary->month }}<br>
+                                <b>Year: </b>{{ $getSalary->year }}<br>
+                                @if($getSalary->status == 0)
+                                  <b>Status: </b><span class="text-danger">{!! App\Salary::getStatus($getSalary->status) !!}</span>
+                                @else
+                                  <b>Status: </b><span class="text-success">{!! App\Salary::getStatus($getSalary->status) !!}</span>
+                                @endif
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+
+            <tr class="heading">
+                <td>
+                    Index
+                </td>
+                <td>
+                    Amount
+                </td>
+            </tr>
+
+              <tr class="item">
+                  <td>
+                    <b>Salary</b>
+                  </td>
+                  <td>
+                     {{ $getEmployee->salary }} Tk
+                  </td>
+              </tr>
+              <tr class="item">
+                  <td>
+                      <b>Advanced Payment</b>
+                  </td>
+                  <td>
+                     {{ $getSalary->advanced_amount }} Tk
+                  </td>
+              </tr>
+
+              <tr class="item">
+                  <td>
+                     <b>Personal Expanse</b>
+                  </td>
+                  <td>
+                     {{ $getSalary->personal_expanse }} Tk
+                  </td>
+              </tr>
+
+            <tr class="total">
+                <td></td>
+                <td>
+                   Total: {{ $getSalary->current_amount }} Tk
+                </td>
+            </tr>
+        </table>
+      </div>
+
    </body>
 
 </html>
