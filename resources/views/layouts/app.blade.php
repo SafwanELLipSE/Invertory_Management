@@ -149,6 +149,10 @@
     <script src="{{ asset('js/sparkline/jquery.sparkline.min.js') }}"></script>
     <script src="{{ asset('js/sparkline/jquery.charts-sparkline.js') }}"></script>
     <script src="{{ asset('js/sparkline/sparkline-active.js') }}"></script>
+    <!-- Chart JS
+      ============================================ -->
+      <script src="js/chart/jquery.peity.min.js"></script>
+      <script src="js/chart/peity-active.js"></script>
     <!-- calendar JS
 		============================================ -->
     <script src="{{ asset('js/calendar/moment.min.js') }}"></script>
@@ -157,6 +161,9 @@
     <!-- plugins JS
 		============================================ -->
     <script src="{{ asset('js/plugins.js') }}"></script>
+    <!-- tab JS
+   ============================================ -->
+    <script src="js/tab.js"></script>
     <!-- main JS
 		============================================ -->
     <script src="{{ asset('js/main.js') }}"></script>

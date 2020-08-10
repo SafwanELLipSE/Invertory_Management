@@ -35,60 +35,127 @@
 
 </div><!-- dont delete this -->
 
-<div class="analytics-sparkle-area">
+<div class="income-order-visit-user-area">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="analytics-sparkle-line reso-mg-b-30">
-                    <div class="analytics-content">
-                        <h5>Computer Technologies</h5>
-                        <h2>$<span class="counter">5000</span> <span class="tuition-fees">Tuition Fees</span></h2>
-                        <span class="text-success">20%</span>
-                        <div class="progress m-b-0">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:20%;"> <span class="sr-only">20% Complete</span> </div>
+                <div class="income-dashone-total reso-mg-b-30">
+                    <div class="income-dashone-pro">
+                        <div class="income-rate-total">
+                            <div class="price-edu-rate">
+                                <h3><span><i class="fa fa-product-hunt"></i> </span> <span class="counter"> {{ $getProductCount }}</span></h3>
+                            </div>
                         </div>
+                        <div class="income-range">
+                            <p>Total Products</p>
+                            <span class="income-percentange bg-green"><span class="counter">95</span>% <i class="fa fa-bolt"></i>
+                            </span>
+                        </div>
+                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="analytics-sparkle-line reso-mg-b-30">
-                    <div class="analytics-content">
-                        <h5>Accounting Technologies</h5>
-                        <h2>$<span class="counter">3000</span> <span class="tuition-fees">Tuition Fees</span></h2>
-                        <span class="text-danger">30%</span>
-                        <div class="progress m-b-0">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:30%;"> <span class="sr-only">230% Complete</span> </div>
+                <div class="income-dashone-total">
+                    <div class="income-dashone-pro">
+                        <div class="income-rate-total">
+                            <div class="price-edu-rate">
+                                <h3><span><i class="fa fa-glass"></i></span> <span class="counter">{{ $getBrandCount }}</span></h3>
+                            </div>
                         </div>
+                        <div class="income-range order-cl">
+                            <p>Total Brands</p>
+                            <span class="income-percentange bg-red"><span class="counter">65</span>% <i class="fa fa-level-up"></i>
+                            </span>
+                        </div>
+                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="analytics-sparkle-line reso-mg-b-30 table-mg-t-pro dk-res-t-pro-30">
-                    <div class="analytics-content">
-                        <h5>Electrical Engineering</h5>
-                        <h2>$<span class="counter">2000</span> <span class="tuition-fees">Tuition Fees</span></h2>
-                        <span class="text-info">60%</span>
-                        <div class="progress m-b-0">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:60%;"> <span class="sr-only">20% Complete</span> </div>
+                <div class="income-dashone-total res-mg-t-30 res-tablet-mg-t-30 dk-res-t-pro-30">
+                    <div class="income-dashone-pro">
+                        <div class="income-rate-total">
+                            <div class="price-edu-rate">
+                                <h3><span><i class="fa fa-cutlery"></i></span> <span class="counter">{{ $getCategoryCount }}</span></h3>
+                            </div>
                         </div>
+                        <div class="income-range visitor-cl">
+                            <p>Total Categories</p>
+                            <span class="income-percentange bg-blue"><span class="counter">75</span>% <i class="fa fa-level-up"></i>
+                            </span>
+                        </div>
+                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
-                    <div class="analytics-content">
-                        <h5>Chemical Engineering</h5>
-                        <h2>$<span class="counter">3500</span> <span class="tuition-fees">Tuition Fees</span></h2>
-                        <span class="text-inverse">80%</span>
-                        <div class="progress m-b-0">
-                            <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">230% Complete</span> </div>
+                <div class="income-dashone-total res-mg-t-30 dk-res-t-pro-30">
+                    <div class="income-dashone-pro">
+                        <div class="income-rate-total">
+                            <div class="price-edu-rate">
+                                <h3><span><i class="fa fa-user-plus"></i></span> <span class="counter">{{ $getSupplierCount }}</span></h3>
+                            </div>
                         </div>
+                        <div class="income-range low-value-cl">
+                            <p>Total Suppliers</p>
+                            <span class="income-percentange bg-purple"><span class="counter">35</span>% <i class="fa fa-level-down"></i>
+                            </span>
+                        </div>
+                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@if(Auth::user()->isMasterAdmin())
+<div class="income-order-visit-user-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="income-dashone-total">
+                    <div class="income-dashone-pro">
+                        <div class="income-rate-total">
+                            <div class="price-edu-rate">
+                                <h3><span><i class="fa fa-user-circle-o"></i></span> <span class="counter">{{ $getEmployeeCount }}</span></h3>
+                            </div>
+                        </div>
+                        <div class="income-range order-cl">
+                            <p>Total Employees</p>
+                            <span class="income-percentange bg-red"><span class="counter">65</span>% <i class="fa fa-level-up"></i>
+                            </span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="income-dashone-total res-mg-t-30 res-tablet-mg-t-30 dk-res-t-pro-30">
+                    <div class="income-dashone-pro">
+                        <div class="income-rate-total">
+                            <div class="price-edu-rate">
+                                <h3><span><i class="fa fa-users"></i></span> <span class="counter">{{ $getUserCount }}</span></h3>
+                            </div>
+                        </div>
+                        <div class="income-range visitor-cl">
+                            <p>Total Users</p>
+                            <span class="income-percentange bg-blue"><span class="counter">75</span>% <i class="fa fa-level-up"></i>
+                            </span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
 <div class="product-sales-area mg-tb-30">
     <div class="container-fluid">
         <div class="row">
