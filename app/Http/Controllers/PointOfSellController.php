@@ -81,6 +81,7 @@ class PointOfSellController extends Controller
         $order->customer_id = $request->customer_id;
         $order->vat = $request->vat_amount;
         $order->total_amount = $convert+($convert*($request->vat_amount/100));
+        $order->created_by = Auth::user()->id;
         $order->save();
 
         if(count($productLists)){

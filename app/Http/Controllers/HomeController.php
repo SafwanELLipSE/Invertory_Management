@@ -8,6 +8,8 @@ use App\Category;
 use App\Supplier;
 use App\Employee;
 use App\User;
+use App\Order;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -36,6 +38,23 @@ class HomeController extends Controller
         $getEmployeeCount = Employee::count();
         $getUserCount = User::count();
 
+        if(Auth::user()->isMasterAdmin())
+        {
+          $today = Order::whereDate('created_at', '=',date('Y-m-d'))->count();
+          $yesterday = Order::whereDate('created_at', '=', date('Y-m-d',strtotime('-1 days')) )->count();
+          $lastWeek = Order::whereDate('created_at', '>', date('Y-m-d',strtotime('-7 days')) )->count();
+          $lastMonth = Order::whereDate('created_at', '>', date('Y-m-d',strtotime('-30 days')) )->count();
+          $lastYear = Order::whereDate('created_at', '>', date('Y-m-d',strtotime('-365 days')) )->count();
+        }
+        if(Auth::user()->isEmployee())
+        {
+            $today = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '=',date('Y-m-d'))->count();
+            $yesterday = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '=', date('Y-m-d',strtotime('-1 days')) )->count();
+            $lastWeek = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '>', date('Y-m-d',strtotime('-7 days')) )->count();
+            $lastMonth = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '>', date('Y-m-d',strtotime('-30 days')) )->count();
+            $lastYear = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '>', date('Y-m-d',strtotime('-365 days')) )->count();
+        }
+
         return view('home',[
             'getProductCount' => $getProductCount,
             'getBrandCount' => $getBrandCount,
@@ -43,6 +62,10 @@ class HomeController extends Controller
             'getSupplierCount' => $getSupplierCount,
             'getEmployeeCount' => $getEmployeeCount,
             'getUserCount' => $getUserCount,
+            'today' => $today,
+            'yesterday' => $yesterday,
+            'lastWeek' => $lastWeek,
+            'lastYear' => $lastYear,
         ]);
     }
 }
