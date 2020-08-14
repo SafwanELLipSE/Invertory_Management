@@ -165,7 +165,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="caption pro-sl-hd">
-                                    <span class="caption-subject"><b>University Earnings</b></span>
+                                    <span class="caption-subject"><b>Daily Order History Graph</b></span>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -175,18 +175,10 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="list-inline cus-product-sl-rp">
-                        <li>
-                            <h5><i class="fa fa-circle" style="color: #006DF0;"></i>CSE</h5>
-                        </li>
-                        <li>
-                            <h5><i class="fa fa-circle" style="color: #933EC5;"></i>Accounting</h5>
-                        </li>
-                        <li>
-                            <h5><i class="fa fa-circle" style="color: #65b12d;"></i>Electrical</h5>
-                        </li>
-                    </ul>
-                    <div id="extra-area-chart" style="height: 356px;"></div>
+                    <div style="height: 356px;">
+                      {!! $chart->container() !!}
+                      {!! $chart->script() !!}
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">

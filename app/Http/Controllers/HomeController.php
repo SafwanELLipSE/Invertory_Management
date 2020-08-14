@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\orderChart;
 use App\Product;
 use App\Brand;
 use App\Category;
@@ -45,6 +46,13 @@ class HomeController extends Controller
           $lastWeek = Order::whereDate('created_at', '>', date('Y-m-d',strtotime('-7 days')) )->count();
           $lastMonth = Order::whereDate('created_at', '>', date('Y-m-d',strtotime('-30 days')) )->count();
           $lastYear = Order::whereDate('created_at', '>', date('Y-m-d',strtotime('-365 days')) )->count();
+
+          $hours4 = Order::whereDate('created_at', '=',date('Y-m-d'))->whereDate('created_at', '=',strtotime('-4 hours'))->count();
+          $hours8 = Order::whereDate('created_at', '=',date('Y-m-d'))->whereDate('created_at', '=',strtotime('-8 hours'))->count();
+          $hours12 = Order::whereDate('created_at', '=',date('Y-m-d'))->whereDate('created_at', '=',strtotime('-12 hours'))->count();
+          $hours16 = Order::whereDate('created_at', '=',date('Y-m-d'))->whereDate('created_at', '=',strtotime('-16 hours'))->count();
+          $hours20 = Order::whereDate('created_at', '=',date('Y-m-d'))->whereDate('created_at', '=',strtotime('-20 hours'))->count();
+          $hours24 = Order::whereDate('created_at', '=',date('Y-m-d'))->whereDate('created_at', '=',strtotime('-24 hours'))->count();
         }
         if(Auth::user()->isEmployee())
         {
@@ -54,6 +62,13 @@ class HomeController extends Controller
             $lastMonth = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '>', date('Y-m-d',strtotime('-30 days')) )->count();
             $lastYear = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '>', date('Y-m-d',strtotime('-365 days')) )->count();
         }
+
+        $chart = new OrderChart;
+
+        $chart->labels(['0','4','8','12','16','20','24']);
+        $chart->dataset('Today\'s Order','line',[0,$hours4,$hours8,$hours12,$hours16,$hours20,$hours24])->backgroundColor('rgba(112, 195, 250, 0.93)');
+
+
 
         return view('home',[
             'getProductCount' => $getProductCount,
@@ -66,6 +81,7 @@ class HomeController extends Controller
             'yesterday' => $yesterday,
             'lastWeek' => $lastWeek,
             'lastYear' => $lastYear,
+            'chart' => $chart,
         ]);
     }
 }
