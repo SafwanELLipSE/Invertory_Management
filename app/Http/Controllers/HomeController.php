@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\orderChart;
+use App\Charts\OrderChart;
 use App\Product;
 use App\Brand;
 use App\Category;
@@ -48,7 +48,7 @@ class HomeController extends Controller
           $lastYear = Order::whereDate('created_at', '>', date('Y-m-d',strtotime('-365 days')) )->count();
 
           $date = new Carbon;
-          $chart = new OrderChart;
+
           $times = array();
           $hours = array();
           $count = 0;
@@ -58,12 +58,6 @@ class HomeController extends Controller
               $count++;
           }
 
-          $total_times = implode(",",$times);
-
-          $chart->labels(['0','4','8','12','16','20','24']);
-          $chart->dataset('Today\'s Order','line',$hours)
-          ->backgroundColor('rgba(112, 195, 250, 0.93)')->color('rgba(16, 20, 148, 1)');
-
         }
         if(Auth::user()->isEmployee())
         {
@@ -71,8 +65,23 @@ class HomeController extends Controller
             $yesterday = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '=', date('Y-m-d',strtotime('-1 days')) )->count();
             $lastWeek = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '>', date('Y-m-d',strtotime('-7 days')) )->count();
             $lastYear = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '>', date('Y-m-d',strtotime('-365 days')) )->count();
+
+            $date = new Carbon;
+
+            $times = array();
+            $hours = array();
+            $count = 0;
+            for($i=0; $i<=24;$i++){
+                $times[] = $count;
+                $hours[] = Order::where('created_by',Auth::user()->id)->whereDate('created_at', '=',date('Y-m-d'))->where('created_at', '>=', $date->subHours($count))->count();
+                $count++;
+            }
         }
 
+        $chart = new OrderChart;
+        $chart->labels(['0','4','8','12','16','20','24']);
+        $chart->dataset('Today\'s Order','line',$hours)
+        ->backgroundColor('rgba(112, 195, 250, 0.93)')->color('rgba(16, 20, 148, 1)');
 
         return view('home',[
             'getProductCount' => $getProductCount,
